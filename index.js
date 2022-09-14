@@ -63,16 +63,18 @@ app.post('/efe', (req,res)=>{
     var inputEfe = String(req.body.inputEfe);
     var lengthE = inputEfe.length;
     var fraseEfe = [];
+    var n = 0;
     for(i=0;i<lengthE;i++){
         var letra = inputEfe[i];
+        fraseEfe[n] = letra;
         if (letra == 'a' || letra == 'e'|| letra == 'i' ||letra == 'o' || letra == 'u') {
-            fraseEfe[i] = letra + 'f' + letra;
+            if(inputEfe[i+1]=='f' && inputEfe[i+2]==letra){
+                i+=2;
+            }
         }
-        else {
-            fraseEfe[i] = inputEfe[i];
-        }
+        n++;
     }
-    res.send("Frase en efe: " + fraseEfe.join(''));
+    res.send("Frase: " + fraseEfe.join(''));
 })
 
 //palindrome
